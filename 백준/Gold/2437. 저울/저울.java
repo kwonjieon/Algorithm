@@ -20,5 +20,5 @@ public class Main{
         System.out.println(sum+1);
         
         
-    }//다시확인필요
+    }//다시확인필요 깃허브체크용주석
 }
