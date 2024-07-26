@@ -16,13 +16,12 @@ public class Main {
         }
 
         for(int i=0;i<K;i++){
-            if(set.contains(list.get(i)))
-                continue;
             if(set.size()<N){
                 set.add(list.get(i));
                 continue;
             }
-
+            if(set.contains(list.get(i)))
+                continue;
             int maxIndex=-1;
             List<Integer> sub = list.subList(i+1,K);
 
