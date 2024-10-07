@@ -19,26 +19,26 @@ public class Main{
             return ;
         }
         char center = '0';//기본세팅 의미없는값
-        String answer = "";
+        StringBuffer sb = new StringBuffer();
         for(int i=0;i<26;i++){
             if(alpha[i]==0){//나온적없으면 패스
                 continue;
             }
             if(alpha[i]%2==1){
                 center = (char)('A'+i);//홀수개는 가운데에 하나있어야함
-
             }
             for(int j=0;j<alpha[i]/2;j++){//앞부분
-                answer+=(char)('A'+i);
+                sb.append((char)('A'+i));
             }
         }
-        int halfLength = answer.length();
+        int halfLength = sb.length();
+
         if(center!='0') {//가운데 부분 추가
-            answer += center;
+            sb.append(center);
         }
         for(int i=halfLength-1;i>=0;i--){//뒷부분완성
-            answer+=answer.charAt(i);
+            sb.append(sb.charAt(i));
         }
-        System.out.println(answer);
+        System.out.println(sb);
     }
 }
