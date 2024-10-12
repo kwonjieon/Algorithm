@@ -33,12 +33,12 @@ public class Main{
         }
     }
     static boolean check(char a,char b,char sign){
-        if(sign=='<'){
-            if(a<b) return true;
+        /*if(sign=='<'){
+            return a < b;
         }
         else if(sign=='>'){
-            if(a>b) return true;
-        }
-        return false;
+            return a > b;
+        }*/
+        return sign=='<' ? a<b:a>b;
     }
 }
