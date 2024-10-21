@@ -4,23 +4,24 @@ import java.io.*;
 public class Main{
     public static void main(String[] args)throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuffer S = new StringBuffer(br.readLine());
-        StringBuffer T = new StringBuffer(br.readLine());
-        while(S.length()!=T.length()){
-            if(T.charAt(T.length()-1)=='A'){
-                T = T.deleteCharAt(T.length()-1);
+        StringBuffer str = new StringBuffer(br.readLine());
+        StringBuffer target = new StringBuffer(br.readLine());
+        while(str.length()!=target.length()){
+            if(target.charAt(target.length()-1)=='A'){
+                target = target.deleteCharAt(target.length()-1);
             }
             else{
-                T = T.deleteCharAt(T.length()-1);
-                T = T.reverse();
+                target = target.deleteCharAt(target.length()-1);
+                target = target.reverse();
             }
         }
-        if(T.toString().equals(S.toString())){
+        if(str.toString().equals(target.toString())){
             System.out.println("1");
         }
         else{
             System.out.println("0");
         }
-
+        
+        
     }
 }
