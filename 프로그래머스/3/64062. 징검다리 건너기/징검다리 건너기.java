@@ -6,17 +6,16 @@ class Solution {
         int min=1;            
         int max=200000000;
         int mid=0;
-        while(min<=max){
+        while(min<max){
             mid = (min+max)/2;
             if(canCross(stones,k,mid)){
                 min=mid+1;
-                answer=Math.max(mid,answer);
             }
             else{
-                max=mid-1;
+                max=mid;
             }   
         }
-        return answer;
+        return min-1;
     }
     public boolean canCross(int[] stones,int k, int friends){
         int skip=0;
