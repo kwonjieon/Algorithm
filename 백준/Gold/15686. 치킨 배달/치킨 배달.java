@@ -1,67 +1,63 @@
 import java.util.*;
 import java.io.*;
 public class Main{
-    static int n;
-    static int m;
-    static LinkedList<point> homes = new LinkedList<>();
-    static LinkedList<point> chicken = new LinkedList<>();
-    static boolean[] open;
-    static int min=Integer.MAX_VALUE;
-
+    static int N;
+    static int M;
+    static int[][] map;
+    static ArrayList<point> chickens = new ArrayList<>();
+    static ArrayList<point> houses = new ArrayList<>();
+    static int min = Integer.MAX_VALUE;
+    static boolean[] visit;
     public static void main(String[] args)throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
 
-
-
-
-        for(int i=0;i<n;i++){
+        map = new int[N][N];
+        for(int i=0;i<N;i++){
             st = new StringTokenizer(br.readLine());
-            for(int j=0;j<n;j++){
-                int x=Integer.parseInt(st.nextToken());
-                if(x==1){
-                    homes.add(new point(j,i));
+            for(int j=0;j<N;j++){
+                map[i][j] = Integer.parseInt(st.nextToken());
+                if(map[i][j]==1){
+                    houses.add(new point(j,i));
                 }
-                else if(x==2){
-                    chicken.add(new point(j,i));
+                else if(map[i][j]==2){
+                    chickens.add(new point(j,i));
                 }
             }
         }
-
-        open = new boolean[chicken.size()];
+        visit = new boolean[chickens.size()];
         dfs(0,0);
         System.out.println(min);
 
 
-
     }
-    static void dfs(int start,int depth){
-        if(depth==m){
+    static void dfs(int depth,int at){
+        if(depth==M){
             int total=0;
-            for(int i=0;i<homes.size();i++){
-                int sum=Integer.MAX_VALUE;
-                for(int j=0;j<chicken.size();j++){
-                    if(open[j]){
-                        int dis = Math.abs(homes.get(i).x-chicken.get(j).x)+Math.abs(homes.get(i).y-chicken.get(j).y);
+            for(int i=0;i<houses.size();i++){
+                int temp = Integer.MAX_VALUE;
+                for(int j=0;j<chickens.size();j++){
+                    if(visit[j]){
+                        int dis = Math.abs(houses.get(i).x- chickens.get(j).x) + Math.abs(houses.get(i).y - chickens.get(j).y);
+                        temp = Math.min(temp,dis);
 
-                        sum=Math.min(sum,dis);
                     }
                 }
-                total+=sum;
+                total+=temp;
             }
-            min=Math.min(total,min);
+            min = Math.min(total,min);
+            return;
         }
-        for(int i=start;i<chicken.size();i++){
-            if(!open[i]){
-                open[i]=true;
-                dfs(i+1,depth+1);
-                open[i]=false;
+        for(int i=at;i<chickens.size();i++){
+            if(!visit[i]){
+                visit[i]=true;
+                dfs(depth+1,i+1);
+                visit[i]=false;
             }
         }
     }
-
     static class point{
         int x;
         int y;
