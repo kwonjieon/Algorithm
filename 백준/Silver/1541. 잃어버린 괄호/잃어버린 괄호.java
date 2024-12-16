@@ -1,7 +1,7 @@
-import java.io.*;
 import java.util.*;
-public class Main {
-    public static void main(String[] args)throws IOException{
+import java.io.*;
+public class Main{
+    public static void main(String[] args)throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine();
         LinkedList<Integer> operand = new LinkedList<>();
@@ -12,22 +12,21 @@ public class Main {
             }
         }
         str = str.replace("+"," ");
-        str = str.replace("-"," ");
-        StringTokenizer st = new StringTokenizer(str);
+        str = str.replace("-"," ");StringTokenizer st = new StringTokenizer(str);
         while(st.hasMoreTokens()){
             operand.add(Integer.parseInt(st.nextToken()));
         }
         for(int i=0;i<operator.size();i++){
-            if(operator.get(i)=='+'){
+            if(operator.get(i) == '+'){
+                int a = operand.remove(i);
+                int b = operand.remove(i);
                 operator.remove(i);
-                int x1 = operand.remove(i);
-                int x2 = operand.remove(i);
-                operand.add(i,x1+x2);
+                operand.add(i,a+b);
                 i--;
             }
         }
         int answer = operand.removeFirst();
-        for(int x:operand){
+        for(int x: operand){
             answer-=x;
         }
         System.out.println(answer);
