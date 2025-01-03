@@ -7,6 +7,7 @@ public class Main{
         int N = Integer.parseInt(br.readLine());
         int M = Integer.parseInt(br.readLine());
         int[][] map = new int[N+1][N+1];
+        StringBuffer sb = new StringBuffer();
         StringTokenizer st;
         for(int i=1;i<=N;i++){
             for(int j=1;j<=N;j++){
@@ -41,10 +42,11 @@ public class Main{
         }
         for(int i=1;i<=N;i++){
             for(int j=1;j<=N;j++){
-                System.out.print(map[i][j]+" ");
+                //System.out.print(map[i][j]+" ");
+                sb.append(map[i][j]+" ");
             }
-            System.out.println();
+            sb.append("\n");
         }
-
+        System.out.println(sb);
     }
 }
