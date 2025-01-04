@@ -6,6 +6,7 @@ public class Main{
         int N = Integer.parseInt(br.readLine());
         int[] arr = new int[N+1];
         int[] ans = new int[N+1];
+        StringBuffer sb = new StringBuffer();
         Stack<Integer> stk = new Stack<>();
         StringTokenizer st = new StringTokenizer(br.readLine());
         for(int i=1;i<=N;i++){
@@ -42,7 +43,8 @@ public class Main{
 
         }
         for(int i=1;i<=N;i++){
-            System.out.print(ans[i]+" ");
+            sb.append(ans[i]+" ");
         }
+        System.out.println(sb);
     }
 }
